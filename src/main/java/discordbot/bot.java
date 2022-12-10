@@ -14,7 +14,7 @@ import java.util.Objects;
 
 
 public class bot extends ListenerAdapter {
-    private static final String BOT_TOKEN = "MTA1MTE1NzQ5ODE4MDE0MTE0Ng.G8C0GU.Jex3MzJX11xi0eXVbjaRL7_UGjly83IvWNPBNo";
+    private static final String BOT_TOKEN = "";
 
     public static void main(String[] arguments) throws Exception {
         JDA api =   JDABuilder.createLight(BOT_TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
@@ -31,12 +31,13 @@ public class bot extends ListenerAdapter {
             MessageChannel channel = event.getChannel();
             channel.sendMessage("Pong!").queue();
         }
-        if (content.toLowerCase().equals("hey")) {
-            System.out.println("Not nice");
+        if (content.toLowerCase().equals("hey") || content.toLowerCase().equals("hallo")) {
+            System.out.println("Welcome message");
             Message messageNaught = event.getMessage();
+            String nickname = Objects.requireNonNull(messageNaught.getMember()).getNickname();
             String contentNaught = message.getContentRaw();
             MessageChannel channelNaught = event.getChannel();
-            channelNaught.sendMessage(Objects.requireNonNull(messageNaught.getMember()).getNickname() + " Hallo!").queue();
+            channelNaught.sendMessage("Hallo " + nickname).queue();
 
 
         }
