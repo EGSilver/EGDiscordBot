@@ -80,23 +80,20 @@ public class taakListener extends ListenerAdapter {
                 event.getJDA().removeEventListener(this);
             }
         }
-        if (event.getAuthor().
-                getIdLong() == authorId && content.equals("2") || event.getAuthor().
-                getIdLong() == authorId && content.toLowerCase().
+        if (event.getAuthor().getIdLong() == authorId && content.equals("2") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
                 contains("nosql")) {
             channel.sendMessage("Welke oplossing van NoSQL?").queue();
         }
-        if (event.getAuthor().
-                getIdLong() == authorId && content.equals("3") || event.getAuthor().
-                getIdLong() == authorId && content.toLowerCase().
+        if (event.getAuthor().getIdLong() == authorId && content.equals("3") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
                 contains("project")) {
             channel.sendMessage("Welke oplossing van Project?").queue();
         }
-        if (event.getAuthor().
-                getIdLong() == authorId && content.equals("4") || event.getAuthor().
-                getIdLong() == authorId && content.toLowerCase().
+        if (event.getAuthor().getIdLong() == authorId && content.equals("4") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
                 contains("ui")) {
             channel.sendMessage("Welke oplossing van UI?").queue();
+        } else if (event.getAuthor().getIdLong() == authorId) {
+            System.out.println("taakListener stopped");
+            event.getJDA().removeEventListener(this);
         }
     }
 }
