@@ -8,11 +8,13 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.FileUpload;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -75,12 +77,22 @@ public class Bot extends ListenerAdapter {
             channel.sendMessage("`" + c + "`").queue();
         }
         if (content.toLowerCase().equals("quinten is")) {
+            Random r = new Random();
+            int randomNumber = r.nextInt((100)+1);
+            System.out.println(randomNumber);
+            File homerKebabGif = new File("G:/Git/EGDiscordBot/src/gifs/homer-simpson-simpsons.gif");
             System.out.println("Quint");
-            System.out.println(message.getMember().getNickname());
-            channel.sendMessage("Quinten is kebab").queue();
+            if (randomNumber < 50) {
+                channel.sendMessage("Quinten is Kebab!").queue();
+            } else {
+                channel.sendFiles(FileUpload.fromData(homerKebabGif)).queue();
+            }
         } else if (content.toLowerCase().equals("!kebab")) {
             System.out.println(message.getMember().getNickname());
             channel.sendMessage("Kebab is Quinten.").queue();
+        }
+        if (content.toLowerCase().equals("ischa is")) {
+            channel.sendMessage(":flag_dk:").queue();
         }
         if (content.toLowerCase().equals("jonathan is")) {
             channel.sendMessage("Jonathan is de beste docent op school!").queue();
