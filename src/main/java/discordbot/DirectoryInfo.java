@@ -18,6 +18,7 @@ public class DirectoryInfo extends ListenerAdapter {
     public CharSequence readDirectory(MessageReceivedEvent event) {
         File dir = new File("G:/Git/EGDiscordBot/src/JavaTaken");
         MessageChannel channel = event.getChannel();
+        String s = "";
         if (dir.exists()) {
             dirName = dir.getName();
             File[] files = dir.listFiles();
@@ -31,10 +32,11 @@ public class DirectoryInfo extends ListenerAdapter {
                 //if there's a file, print name
                 if (file.isFile()) {
                     fileName = file.getName();
-                    String s = fileName.replace(".txt","");
-                    channel.sendMessage("\t" + s).queue();
+                     s += fileName.replace(".txt","") + "\n";
+
                 }
             }
+            channel.sendMessage("\t" + s).queue();
             //make child directory the new parent/current directory and repeat
             dir = new File(dir, childName);
         }

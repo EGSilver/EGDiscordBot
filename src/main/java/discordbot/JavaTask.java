@@ -32,6 +32,7 @@ public class JavaTask extends ListenerAdapter {
         MessageChannel channel = event.getChannel();
         Message message = event.getMessage();
         Member member = message.getMember();
+        StringBuilder textBlock = new StringBuilder();
         String content = event.getMessage().getContentRaw();
         if (event.getAuthor().getIdLong() == authorId && content.equals("spaargeld") || content.equals("7") || content.equals("Oefening5")) {
             File spaargeld = new File("G:/Git/EGDiscordBot/src/JavaTaken/7. Oefening7Spaargeld.txt");
@@ -43,19 +44,11 @@ public class JavaTask extends ListenerAdapter {
                 throw new RuntimeException(e);
             }
             while (txtIn.hasNextLine()) {
-                System.out.println(txtIn);
                 String line = txtIn.nextLine();
-                channel.sendMessage("`" + line + "`").queue();
-                event.getJDA().removeEventListener(this);
+                textBlock.append(line).append("\n");
             }
-/*            int lineNumber = 25;
-            String[] textBlock = new String[lineNumber];
-            for (int i = 0; i < lineNumber ; i++) {
-                textBlock[i] = txtIn.next();
-            }
-            for (String t : textBlock) {
-                channel.sendMessage(t).queue();
-            }*/
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
         } else if (event.getAuthor().getIdLong() == authorId && content.equals("optellenmetrest") || content.equals("6")) {
             File whileOef6 = new File("G:/Git/EGDiscordBot/src/JavaTaken/6. Oefening6GetalOptellenMetRest.txt");
             System.out.println("Oef6 optellenmetrest Loaded.");
@@ -66,11 +59,11 @@ public class JavaTask extends ListenerAdapter {
                 throw new RuntimeException(e);
             }
             while (txtIn.hasNextLine()) {
-                System.out.println(txtIn);
                 String line = txtIn.nextLine();
-                channel.sendMessage("`" + line + "`").queue();
-                event.getJDA().removeEventListener(this);
+                textBlock.append(line).append("\n");
             }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
         } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().equals("gemenedeler") || content.toLowerCase().equals("5")) {
             File gemeneDeler = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\5. Oefening5GrootstGemeneDeler.txt");
             System.out.println("Oef5 GemeneDeler Loaded.");
@@ -81,12 +74,56 @@ public class JavaTask extends ListenerAdapter {
                 throw new RuntimeException(e);
             }
             while (txtIn.hasNextLine()) {
-                System.out.println(txtIn);
                 String line = txtIn.nextLine();
-                channel.sendMessage("`" + line + "`").queue();
-                event.getJDA().removeEventListener(this);
+                textBlock.append(line).append("\n");
             }
-
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().equals("priem") || content.toLowerCase().equals("4")) {
+            File gemeneDeler = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\4. Oefening4PriemGetallen.txt");
+            System.out.println("Oef4 Priem Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(gemeneDeler);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("beginwaarde eindwaarde") || content.toLowerCase().equals("3")) {
+            File gemeneDeler = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\3. Oefening3BeginEindWhile.txt");
+            System.out.println("Oef3 Begin/Eindwaarde Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(gemeneDeler);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("input stop") || content.toLowerCase().equals("2")) {
+            File gemeneDeler = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\2. Oefening2InputEqualsStop.txt");
+            System.out.println("Oef2 Input/Stop Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(gemeneDeler);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
         }
         else event.getJDA().removeEventListener(this);
     }

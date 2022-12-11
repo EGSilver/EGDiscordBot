@@ -59,7 +59,7 @@ public class Bot extends ListenerAdapter {
         }
         if (content.toLowerCase().equals("!help")) {
             int lineNumber = 1;
-            File help = new File("G:/Git/EGDiscordBot/src/JavaTaken/help.txt");
+            File help = new File("G:/Git/EGDiscordBot/src/readme/help.txt");
             System.out.println("help file Loaded.");
             Scanner txtIn = null;
             try {
@@ -67,12 +67,12 @@ public class Bot extends ListenerAdapter {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            String c = "";
             while (txtIn.hasNextLine()) {
                 System.out.println(txtIn);
-                String line = txtIn.nextLine();
-                String s = line.replace("\n","");
-                channel.sendMessage("`" + s + "`").queue();
+                c += txtIn.nextLine() + "\n";
             }
+            channel.sendMessage("`" + c + "`").queue();
         }
         if (content.toLowerCase().equals("quinten is")) {
             System.out.println("Quint");

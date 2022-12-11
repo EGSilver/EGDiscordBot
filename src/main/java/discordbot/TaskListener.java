@@ -24,6 +24,7 @@ public class TaskListener extends ListenerAdapter {
         Message message = event.getMessage();
         Member member = message.getMember();
         String content = event.getMessage().getContentRaw();
+        String filesInDir = "";
         if (content.equals("0")) {
             event.getJDA().removeEventListener(this); // stops listening.
         }
@@ -31,14 +32,19 @@ public class TaskListener extends ListenerAdapter {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van Java").queue();
             scan.readDirectory(event);
             event.getJDA().addEventListener(new JavaTask(channel, member.getUser()));
+            event.getJDA().removeEventListener(this);
         } else if (content.startsWith("2") || content.startsWith("!nosql")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van NoSQL?").queue();
+            event.getJDA().removeEventListener(this);
         } else if (content.startsWith("3") || content.startsWith("!project")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van Project?").queue();
+            event.getJDA().removeEventListener(this);
         } else if (content.startsWith("4") || content.startsWith("!ui")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van UI?").queue();
+            event.getJDA().removeEventListener(this);
         } else {
             System.out.println("taakListener end");
+            event.getJDA().removeEventListener(this);
         }
     }
 }
