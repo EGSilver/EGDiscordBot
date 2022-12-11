@@ -2,7 +2,6 @@ package discordbot;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
@@ -17,12 +16,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 
-public class bot extends ListenerAdapter {
+public class Bot extends ListenerAdapter {
     private static final String BOT_TOKEN = "";
 
     public static void main(String[] arguments) throws FileNotFoundException {
         JDA api = JDABuilder.createLight(BOT_TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
-                .addEventListeners(new bot())
+                .addEventListeners(new Bot())
                 .build();
 
     }
@@ -57,7 +56,7 @@ public class bot extends ListenerAdapter {
         }
         if (content.startsWith("!oplossing") || content.startsWith("!taak")) {
             channel.sendMessage("typ meteen de naam van de taak, of kies Welk vak?\n1. Java\n2. NoSQL\n3. Project\n4. UI\n").queue();
-            event.getJDA().addEventListener(new taakListener(channel, member.getUser()));
+            event.getJDA().addEventListener(new TaskListener(channel, member.getUser()));
         }
         if (content.toLowerCase().equals("!help")) {
             int lineNumber = 1;

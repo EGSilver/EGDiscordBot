@@ -1,5 +1,9 @@
 package discordbot;
 
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import javafx.stage.DirectoryChooser;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
@@ -12,31 +16,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class taakListener extends ListenerAdapter {
+public class JavaTask extends ListenerAdapter {
     private final long channelId, authorId;
 
-    public taakListener(MessageChannel channel, User author) {
+    public JavaTask(MessageChannel channel, User author) {
         this.channelId = channel.getIdLong();
         this.authorId = author.getIdLong();
     }
 
-    @Override
-    public void onMessageReceived(MessageReceivedEvent event) throws IllegalArgumentException {
-        //TODO fix bug that stops listening before the user has responded
+    public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return; // stops the bots from responding to itself.
         DirectoryInfo scan = new DirectoryInfo();
         MessageChannel channel = event.getChannel();
         Message message = event.getMessage();
+        Member member = message.getMember();
         String content = event.getMessage().getContentRaw();
-        if (content.equals("0")) {
-            event.getJDA().removeEventListener(this); // stops listening.
-        } else if (event.getAuthor().getIdLong() == authorId || event.getMessage().getMentions() == message.getMentions())  {
-            System.out.println("taakListener stopped");
-            event.getJDA().removeEventListener(this);
-        } if (event.getAuthor().getIdLong() == authorId && content.equals("1") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("java")) {
-            channel.sendMessage("Welke oplossing van Java? Kies een nummer of typ te naam van de oplossing/taak").queue();
-            scan.readDirectory(event);
-        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("spaargeld") || content.equals("7") || content.toLowerCase().contains("spaargeld")) {
+        if (event.getAuthor().getIdLong() == authorId && content.equals("spaargeld") || content.equals("7") || content.equals("Oefening5")) {
             int lineNumber = 1;
             File spaargeld = new File("G:/Git/EGDiscordBot/src/JavaTaken/7. Oefening7Spaargeld.txt");
             System.out.println("Oef7 Spaargeld Loaded.");
@@ -52,7 +47,7 @@ public class taakListener extends ListenerAdapter {
                 channel.sendMessage("`" + line + "`").queue();
                 event.getJDA().removeEventListener(this);
             }
-        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("optellenmetrest") || content.equals("6")) {
+        } else if (event.getAuthor().getIdLong() == authorId && content.equals("optellenmetrest") || content.equals("6")) {
             File whileOef6 = new File("G:/Git/EGDiscordBot/src/JavaTaken/6. Oefening6GetalOptellenMetRest.txt");
             System.out.println("Oef6 optellenmetrest Loaded.");
             Scanner txtIn = null;
@@ -67,7 +62,7 @@ public class taakListener extends ListenerAdapter {
                 channel.sendMessage("`" + line + "`").queue();
                 event.getJDA().removeEventListener(this);
             }
-        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("gemenedeler") || content.toLowerCase().contains("5")) {
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().equals("gemenedeler") || content.toLowerCase().equals("5")) {
             File gemeneDeler = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\5. Oefening5GrootstGemeneDeler.txt");
             System.out.println("Oef5 GemeneDeler Loaded.");
             Scanner txtIn = null;
@@ -82,16 +77,8 @@ public class taakListener extends ListenerAdapter {
                 channel.sendMessage("`" + line + "`").queue();
                 event.getJDA().removeEventListener(this);
             }
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("2") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("nosql")) {
-            channel.sendMessage("Welke oplossing van NoSQL?").queue();
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("3") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("project")) {
-            channel.sendMessage("Welke oplossing van Project?").queue();
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("4") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("ui")) {
-            channel.sendMessage("Welke oplossing van UI?").queue();
+
         }
+        else event.getJDA().removeEventListener(this);
     }
 }
-
