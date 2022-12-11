@@ -1,0 +1,17 @@
+public class Oefening4PrimeNumber {
+    public static void main(String[] args) {
+        int number = Integer.parseInt(JOptionPane.showInputDialog("Geef getal"));
+        int deler = 2;
+        boolean isPrime = true;
+        for (int i = deler; i < number; i++) {
+            if (number % i == 0) {
+                isPrime = false;
+            }
+        }
+        if (isPrime) {
+            System.out.println(number + " is een priemgetal");
+        } else {
+            System.out.println("nope");
+        }
+    }
+}

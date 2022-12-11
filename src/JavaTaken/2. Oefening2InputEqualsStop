@@ -1,0 +1,17 @@
+public class Oefening2InputEqualsStop {
+    public static void main(String[] args) {
+        //Lees een aantal getallen in en bepaal het grootste getal.
+        //Let op, er kunnen ook negatieve getallen opgegeven worden.
+        //Wanneer je STOP ingeeft, dan stopt de lus.
+        String input = JOptionPane.showInputDialog("Geef getal");
+        int voorlopig = Integer.parseInt(input);
+        while (!input.equals("stop")) {
+            int getal = Integer.parseInt(input);
+            if (getal < voorlopig) {
+                voorlopig = getal;
+            }
+            input = JOptionPane.showInputDialog("Geef getal");
+        }
+        System.out.println(voorlopig);
+    }
+}

@@ -1,0 +1,16 @@
+public class Oefening3BeginEindWhile {
+    public static void main(String[] args) {
+        int beginWaarde = Integer.parseInt(JOptionPane.showInputDialog("Geef beginwaarde"));
+        int eindWaarde = Integer.parseInt(JOptionPane.showInputDialog("Geef eindwaarde"));
+        boolean goedeWaarde = eindWaarde - beginWaarde > 50;
+        boolean isValid = false;
+        while (!goedeWaarde && !isValid) {
+            beginWaarde = Integer.parseInt(JOptionPane.showInputDialog("Geef beginwaarde"));
+            eindWaarde = Integer.parseInt(JOptionPane.showInputDialog("Begin en eindwaarde moeten minstens 50 uit elkaar liggen"));
+            goedeWaarde = eindWaarde - beginWaarde > 50;
+            if (goedeWaarde) {
+                isValid = true;
+            }
+        }
+    }
+}
