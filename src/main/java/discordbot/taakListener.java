@@ -33,7 +33,7 @@ public class taakListener extends ListenerAdapter {
         } else if (event.getAuthor().getIdLong() == authorId || event.getMessage().getMentions() == message.getMentions())  {
             System.out.println("taakListener stopped");
             event.getJDA().removeEventListener(this);
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("1") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("java")) {
+        } if (event.getAuthor().getIdLong() == authorId && content.equals("1") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("java")) {
             channel.sendMessage("Welke oplossing van Java? Kies een nummer of typ te naam van de oplossing/taak").queue();
             scan.readDirectory(event);
         } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("spaargeld") || content.equals("7") || content.toLowerCase().contains("spaargeld")) {
