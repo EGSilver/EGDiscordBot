@@ -124,6 +124,7 @@ public class JavaTask extends ListenerAdapter {
             }
             event.getJDA().removeEventListener(this);
             channel.sendMessage("`" + textBlock + "`").queue();
+            channel.sendFiles().queue();
         }
         else event.getJDA().removeEventListener(this);
     }

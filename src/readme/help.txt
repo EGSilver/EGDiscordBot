@@ -1,5 +1,5 @@
 -- Timeless Commands -- 
-!oplossing 
+!oplossing of !taak
 !marco		
 !ping		
 <name> is   
