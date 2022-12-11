@@ -14,6 +14,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import javax.naming.spi.DirectoryManager;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JavaTask extends ListenerAdapter {
@@ -32,7 +34,6 @@ public class JavaTask extends ListenerAdapter {
         Member member = message.getMember();
         String content = event.getMessage().getContentRaw();
         if (event.getAuthor().getIdLong() == authorId && content.equals("spaargeld") || content.equals("7") || content.equals("Oefening5")) {
-            int lineNumber = 1;
             File spaargeld = new File("G:/Git/EGDiscordBot/src/JavaTaken/7. Oefening7Spaargeld.txt");
             System.out.println("Oef7 Spaargeld Loaded.");
             Scanner txtIn = null;
@@ -47,6 +48,14 @@ public class JavaTask extends ListenerAdapter {
                 channel.sendMessage("`" + line + "`").queue();
                 event.getJDA().removeEventListener(this);
             }
+/*            int lineNumber = 25;
+            String[] textBlock = new String[lineNumber];
+            for (int i = 0; i < lineNumber ; i++) {
+                textBlock[i] = txtIn.next();
+            }
+            for (String t : textBlock) {
+                channel.sendMessage(t).queue();
+            }*/
         } else if (event.getAuthor().getIdLong() == authorId && content.equals("optellenmetrest") || content.equals("6")) {
             File whileOef6 = new File("G:/Git/EGDiscordBot/src/JavaTaken/6. Oefening6GetalOptellenMetRest.txt");
             System.out.println("Oef6 optellenmetrest Loaded.");

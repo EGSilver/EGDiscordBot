@@ -23,12 +23,11 @@ public class Bot extends ListenerAdapter {
         JDA api = JDABuilder.createLight(BOT_TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .addEventListeners(new Bot())
                 .build();
-
     }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        //TODO Put different ifs in 'Contains' new classes to cleanup main
+        //TODO Make it so that bot doesnt have to send every line separately.
         Message message = event.getMessage();
         String content = message.getContentRaw();
         String nickname = Objects.requireNonNull(message.getMember()).getNickname();
@@ -55,7 +54,7 @@ public class Bot extends ListenerAdapter {
             channel.sendMessage(message.getMember().getEffectiveName() + " You said the word " + message + " You have been timed out for " + thirtySeconds).queue();
         }
         if (content.startsWith("!oplossing") || content.startsWith("!taak")) {
-            channel.sendMessage("typ meteen de naam van de taak, of kies Welk vak?\n1. Java\n2. NoSQL\n3. Project\n4. UI\n").queue();
+            channel.sendMessage("typ een nummer, of typ het vak\n1.\t Java\n2.\tNoSQL\n3.\tProject\n4.\tUI\n").queue();
             event.getJDA().addEventListener(new TaskListener(channel, member.getUser()));
         }
         if (content.toLowerCase().equals("!help")) {
@@ -93,7 +92,7 @@ public class Bot extends ListenerAdapter {
             channel.sendMessage(":sleeping_accommodation:").queue();
         }
         if (content.toLowerCase().equals("dean is") && !message.getAuthor().getName().equals("Netherspite")) {
-            channel.sendMessage(message.getMember().getNickname() + "You need to shut the fuck up").queue();
+            channel.sendMessage(message.getMember().getNickname() + "Be Quiet").queue();
         }
         System.out.println("Event Registered");
     }

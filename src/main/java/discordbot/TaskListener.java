@@ -17,7 +17,7 @@ public class TaskListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) throws IllegalArgumentException {
-        //TODO fix bug that stops listening before the user has responded
+        //TODO
         if (event.getAuthor().isBot()) return; // stops the bots from responding to itself.
         DirectoryInfo scan = new DirectoryInfo();
         MessageChannel channel = event.getChannel();
@@ -31,14 +31,11 @@ public class TaskListener extends ListenerAdapter {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van Java").queue();
             scan.readDirectory(event);
             event.getJDA().addEventListener(new JavaTask(channel, member.getUser()));
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("2") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("nosql")) {
+        } else if (content.startsWith("2") || content.startsWith("!nosql")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van NoSQL?").queue();
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("3") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("project")) {
+        } else if (content.startsWith("3") || content.startsWith("!project")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van Project?").queue();
-        } else if (event.getAuthor().getIdLong() == authorId && content.equals("4") || event.getAuthor().getIdLong() == authorId && content.toLowerCase().
-                contains("ui")) {
+        } else if (content.startsWith("4") || content.startsWith("!ui")) {
             channel.sendMessage("Hier is een lijst met alle bekende oplossingen van UI?").queue();
         } else {
             System.out.println("taakListener end");

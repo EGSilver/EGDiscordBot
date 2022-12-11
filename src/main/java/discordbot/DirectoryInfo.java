@@ -22,15 +22,17 @@ public class DirectoryInfo extends ListenerAdapter {
             dirName = dir.getName();
             File[] files = dir.listFiles();
 
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    childName = files[i].getName();
+            assert files != null;
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    childName = file.getName();
                     channel.sendMessage("\t" + childName).queue();
                 }
                 //if there's a file, print name
-                if (files[i].isFile()) {
-                    fileName = files[i].getName();
-                    channel.sendMessage("\t" + fileName).queue();
+                if (file.isFile()) {
+                    fileName = file.getName();
+                    String s = fileName.replace(".txt","");
+                    channel.sendMessage("\t" + s).queue();
                 }
             }
             //make child directory the new parent/current directory and repeat
