@@ -24,6 +24,7 @@ public class bot extends ListenerAdapter {
         JDA api = JDABuilder.createLight(BOT_TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .addEventListeners(new bot())
                 .build();
+
     }
 
     @Override
