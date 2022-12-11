@@ -19,6 +19,7 @@ public class taakListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        //TODO fix bug that stops listening before the user has responded
         if (event.getAuthor().isBot()) return; // stops the bots from responding to itself.
         MessageChannel channel = event.getChannel();
         String content = event.getMessage().getContentRaw();
@@ -74,29 +75,20 @@ public class taakListener extends ListenerAdapter {
                 event.getJDA().removeEventListener(this);
             }
         } if (event.getAuthor().
-
                 getIdLong() == authorId && content.equals("2") || event.getAuthor().
-
                 getIdLong() == authorId && content.toLowerCase().
-
                 contains("nosql")) {
             channel.sendMessage("Welke oplossing van NoSQL?").queue();
             event.getJDA().removeEventListener(this);
         } if (event.getAuthor().
-
                 getIdLong() == authorId && content.equals("3") || event.getAuthor().
-
                 getIdLong() == authorId && content.toLowerCase().
-
                 contains("project")) {
             channel.sendMessage("Welke oplossing van Project?").queue();
             event.getJDA().removeEventListener(this);
         } if (event.getAuthor().
-
                 getIdLong() == authorId && content.equals("4") || event.getAuthor().
-
                 getIdLong() == authorId && content.toLowerCase().
-
                 contains("ui")) {
             channel.sendMessage("Welke oplossing van UI?").queue();
             event.getJDA().removeEventListener(this);

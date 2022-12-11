@@ -28,6 +28,7 @@ public class bot extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        //TODO Put different ifs in 'Contains' new classes to cleanup main
         Message message = event.getMessage();
         String content = message.getContentRaw();
         String nickname = Objects.requireNonNull(message.getMember()).getNickname();
