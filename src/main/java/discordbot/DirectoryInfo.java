@@ -15,13 +15,12 @@ public class DirectoryInfo extends ListenerAdapter {
     String childName = "";
     String fileName = "";
 
-    public CharSequence readDirectory(MessageReceivedEvent event) {
-        File dir = new File("G:/Git/EGDiscordBot/src/JavaTaken");
+    public CharSequence readDirectory(MessageReceivedEvent event, File directory) {
         MessageChannel channel = event.getChannel();
         String s = "";
-        if (dir.exists()) {
-            dirName = dir.getName();
-            File[] files = dir.listFiles();
+        if (directory.exists()) {
+            dirName = directory.getName();
+            File[] files = directory.listFiles();
 
             assert files != null;
             for (File file : files) {
@@ -32,13 +31,16 @@ public class DirectoryInfo extends ListenerAdapter {
                 //if there's a file, print name
                 if (file.isFile()) {
                     fileName = file.getName();
-                     s += fileName.replace(".txt","") + "\n";
-
+                    if (fileName.contains(".txt")) {
+                        s += fileName.replace(".txt", "") + "\n";
+                    } else {
+                        s += fileName.replace(".java", "") + "\n";
+                    }
                 }
+                directory = new File(directory, childName);
             }
-            channel.sendMessage("\t" + s).queue();
+            channel.sendMessage("`\n" + s + "\n`").queue();
             //make child directory the new parent/current directory and repeat
-            dir = new File(dir, childName);
         }
         return null;
     }

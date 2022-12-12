@@ -1,14 +1,18 @@
 package discordbot;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.FileUpload;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
+import net.dv8tion.jda.internal.requests.Route;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +33,7 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        //TODO Make it so that bot doesnt have to send every line separately.
+        //TODO
         Message message = event.getMessage();
         String content = message.getContentRaw();
         String nickname = Objects.requireNonNull(message.getMember()).getNickname();
@@ -98,13 +102,29 @@ public class Bot extends ListenerAdapter {
             channel.sendMessage("Jonathan is de beste docent op school!").queue();
         }
         if (content.toLowerCase().equals("owen is")) {
-            channel.sendMessage(":zebra:").queue();
+            Random r = new Random();
+            int randomNumber = r.nextInt((100)+1);
+            Emoji owenH = Emoji.fromUnicode("U+267F");
+            if (randomNumber < 25) {
+                channel.sendMessage(":zebra:").queue();
+            } else if (randomNumber > 25 && randomNumber < 50) {
+                channel.sendMessage(":speak_no_evil:").queue();
+            } else if (randomNumber > 50 && randomNumber < 75) {
+                channel.sendMessage(":regional_indicator_g: :regional_indicator_a: :regional_indicator_y:").queue();
+            } else {
+                message.addReaction(owenH).queue();
+            }
         }
         if (content.toLowerCase().equals("sander is")) {
             channel.sendMessage(":sleeping_accommodation:").queue();
         }
         if (content.toLowerCase().equals("dean is") && !message.getAuthor().getName().equals("Netherspite")) {
             channel.sendMessage(message.getMember().getNickname() + "Be Quiet").queue();
+        }
+        if (content.toLowerCase().contains("dochter")) {
+            File dochter = new File("G:/Git/EGDiscordBot/src/gifs/dreamdollars-ariescarey.gif");
+            message.getMember().timeoutFor(Duration.ofSeconds(10)).queue();
+            channel.sendFiles(FileUpload.fromData(dochter)).queue();
         }
         System.out.println("Event Registered");
     }

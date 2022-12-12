@@ -139,6 +139,108 @@ public class JavaTask extends ListenerAdapter {
             channel.sendMessage("`" + textBlock + "`").queue();
             FileUpload.fromData(inputStop);
             channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("rijen1") || content.toLowerCase().equals("8")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\8. Oefening1GetallenOpRijen.java");
+            System.out.println("Oef Rijen Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("rijen2") || content.toLowerCase().equals("9")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\9. Oefening2GetallenOpRijen2.java");
+            System.out.println("Oef GetallenOpRijen Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("maaltafels") || content.toLowerCase().equals("10")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\10. Oefening3MaalTafels.java");
+            System.out.println("Oef MaalTafels Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("sterren") || content.toLowerCase().equals("11")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\11. Oefening4StarsSterrekes.java");
+            System.out.println("Oef Sterren Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("gemiddelde") || content.toLowerCase().equals("12")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\12. Oefening5Gemiddelde.java");
+            System.out.println("Oef Gemiddelde Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
+        } else if (event.getAuthor().getIdLong() == authorId && content.toLowerCase().contains("faculteit") || content.toLowerCase().equals("13")) {
+            File inputStop = new File("G:\\Git\\EGDiscordBot\\src\\JavaTaken\\13. Oefening6Faculteit.java");
+            System.out.println("Oef faculteit Loaded.");
+            Scanner txtIn = null;
+            try {
+                txtIn = new Scanner(inputStop);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            while (txtIn.hasNextLine()) {
+                String line = txtIn.nextLine();
+                textBlock.append(line).append("\n");
+            }
+            event.getJDA().removeEventListener(this);
+            channel.sendMessage("`" + textBlock + "`").queue();
+            FileUpload.fromData(inputStop);
+            channel.sendFiles(FileUpload.fromData(inputStop)).queue();
         }
         else event.getJDA().removeEventListener(this);
     }
