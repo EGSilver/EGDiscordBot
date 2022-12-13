@@ -29,6 +29,8 @@ public class Bot extends ListenerAdapter {
         JDA api = JDABuilder.createLight(BOT_TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .addEventListeners(new Bot())
                 .build();
+        DBConnection postgres = new DBConnection();
+        postgres.DBConnect();
     }
 
     @Override
@@ -126,6 +128,7 @@ public class Bot extends ListenerAdapter {
             message.getMember().timeoutFor(Duration.ofSeconds(10)).queue();
             channel.sendFiles(FileUpload.fromData(dochter)).queue();
         }
+        // SELECT message.getAuthor().getName() from xp_system where message.getAuthor().getIdLong()
         System.out.println("Event Registered");
     }
 }
